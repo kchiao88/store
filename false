@@ -1,0 +1,2 @@
+      invoke  active_record
+      create    db/migrate/20170923191939_add_popular_to_product.rb

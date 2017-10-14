@@ -1,0 +1,31 @@
+<% if current_user.admin? %>
+<div style="margin:0 auto; width:50%; text-align:center;">
+<%= form_for :product, url: products_path do |f| %>
+
+<p>
+    <%= f.label :title %><br>
+    <%= f.text_field :title, required: true %>
+</p>
+<p>
+    <%= f.label :desc %><br>
+    <%= f.text_field :desc, required: true %>
+</p>
+<p>
+    <%= f.label :price %><br>
+    <%= f.text_field :price, required: true %>
+</p>
+<div class="field">
+    <p><b>Upload a image</b></p>
+    <br>
+    <div style="margin: 0 auto; width: 25%">
+        <%= f.file_field :pic %>
+    </div>
+    <br/>
+</div>
+<p>
+    <%= f.submit %>
+</p>
+<% end %>
+</div>
+
+<% end %>

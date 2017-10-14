@@ -1,0 +1,32 @@
+<h1>Popular</h1>
+<div style="width:80%;margin:0 auto">
+<div class="row">
+<% @products.each do |product| %>
+
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img src="<%= product.pic %>" alt="...">
+      <div class="caption">
+        <h3><%= product.title %></h3>
+        <p><%= product.desc %> </p>
+        <p>Price: $<%= product.price %></p>
+        <p><a href="/products/<%= product.id %>" class="btn btn-primary" role="button">More info</a> </p>
+      </div>
+    </div>
+  </div>
+
+<% end %>
+</div>
+
+</div>
+
+<a href="/categories"><button class="btn btn-danger">Categories</button></a>
+
+<a href="/all" ><button class="btn btn-primary">View all</button></a>
+
+<% if user_signed_in? %>
+
+  <% if current_user.admin? %>
+    <a href="/new" ><button class="btn btn-primary">Post new product</button></a>
+  <% end %>
+<% end %>
