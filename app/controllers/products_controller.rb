@@ -15,7 +15,9 @@ class ProductsController < ApplicationController
   def new
   end
   
-  
+  def search
+    @products = Product.all
+  end
   
   def create
     @user ||= User.find(session[:id]) if session[:id]

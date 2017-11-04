@@ -61,5 +61,6 @@ Rails.application.routes.draw do
   resources :products
   get 'all' => 'products#all'
   get 'new' => 'products#new'
-  get '/search/:query' => 'search#index'
+  get 'search' => 'products#search'
+  # get '/search/:query' => 'search#index'
 end

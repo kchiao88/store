@@ -1,0 +1,6 @@
+
+<% @products.each do |product| %>
+
+    <%= react_component("Main", {title: product.title, id: product.id}) %>
+
+<% end %>
