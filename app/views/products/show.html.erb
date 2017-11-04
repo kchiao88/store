@@ -1,13 +1,17 @@
-<div class="col-sm-6 col-md-4">
+<div style="">
+<div class="col-sm-6 col-md-4" style="margin: 0 auto;">
     <div class="thumbnail">
       <img src="<%= @product.pic %>" alt="...">
       <div class="caption">
         <h3><%= @product.title %></h3>
         <p><%= @product.desc %></p>
-        <p>Price: $<%= @product.price %></p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+        <% if @product.price.to_s[-1] != "0" %>
+            <p>Price: $<%= @product.price %></p>
+        <% else %>
+            <p>Price: $<%= @product.price %>0</p>
+        <% end %>
       </div>
     </div>
   </div>
-  
   <%= render :template => "charges/new" %>
+</div>

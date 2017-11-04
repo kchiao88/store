@@ -8,3 +8,4 @@
 
 Product.create(title: 'Hello Toy', desc:"Wheter you're training for me, i will say hello to you.", price:6.00, pic:"", popular: true)
 Product.create(title: 'Hello Game', desc:"When you're on the go, play a game!", price:5.69, pic:"", popular: false)
+Product.create(title: 'test', desc:"Whes", price:99.99, pic:"", popular: false)
