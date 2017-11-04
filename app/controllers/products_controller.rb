@@ -17,6 +17,7 @@ class ProductsController < ApplicationController
   
   def search
     @products = Product.all
+    @allproducts_json = @products.to_json
   end
   
   def create

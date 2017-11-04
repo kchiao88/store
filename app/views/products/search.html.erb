@@ -1,6 +1,8 @@
-
-<% @products.each do |product| %>
-
-    <%= react_component("Main", {title: product.title, id: product.id}) %>
-
-<% end %>
+<script>
+    // var javascript_side_json = <%= @allproducts_json.html_safe %>;
+</script>
+<div style="width: 100%;">
+    <div style="margin: 0 auto;">
+        <%= react_component("Main", {data: @allproducts_json.html_safe}) %>
+    </div>
+</div>
