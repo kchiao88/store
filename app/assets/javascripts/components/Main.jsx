@@ -81,6 +81,18 @@ class Main extends React.Component
     	width:'100%',
     	margin: '0 auto'
     };
+    
+    let divh1;
+    if(list[0].length > 1 )
+    {
+      let divh1 = { width: "100%", minHeight: "200px"};
+    }
+    else
+    {
+      let divh1 = { width: "100%"};
+    }
+    
+    /*
     if(list[0].length > 1 )
     {
       var title_h1 = <h1 style={{ textAlign: "left"}}> Title </h1>;
@@ -97,6 +109,7 @@ class Main extends React.Component
     {
       var desc_h1;
     }
+    */
     return( 
       <div>
         <div style={input_style}>
@@ -104,6 +117,7 @@ class Main extends React.Component
               <br/>
         </div>
         <h1 style={{ textAlign: "left"}}> Title </h1>
+        <div style={ divh1 }>
         {list[0].map(function(a, index) {
              return (
                  <div>
@@ -111,9 +125,9 @@ class Main extends React.Component
                  </div>
              );
          })}
-         
-      <h1 style={{ textAlign: "left"}}> Description </h1>
-        <div>
+      </div>
+      <h1 style={{ textAlign: "left", width: "30%"}}> Description </h1>
+        <div style={{ width: "100%"}}>
         {list[1].map(function(a, index) {
              return (
                  <div>
