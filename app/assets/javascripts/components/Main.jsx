@@ -1,14 +1,44 @@
+class Video extends React.Component
+{
+  
+  render()
+  {
+    let val;
+    if(this.props.type === "title")
+    {
+      val = <div><h3>{ this.props.title } </h3><p>{this.props.links[this.props.index]["desc"]}</p></div>;
+    }
+    else
+    {
+      val = <div><h3>{ this.props.links[this.props.index]["title"] } </h3><p>{this.props.links[this.props.index]["desc"]}</p></div>;
+    }
+    return(
+      <a href={"/products/" + String(this.props.links[this.props.index]["id"])} key={this.props.index}>
+        <div className="col-sm-6 col-md-4">
+          <div className="thumbnail">
+              <img src={this.props.links[this.props.index]["pic"]}  />
+                <div className="caption">
+                      { val }
+                      <p>Price: ${this.props.links[this.props.index]["price"]}</p>
+                      </div>
+                  </div>
+                </div>
+            </a>
+      );
+  }
+}
+
 class Main extends React.Component 
 { 
   constructor(props) {
     super(props);
-    this.state = {search_term: "-"};
+    this.state = {search_term: ""}; //if you want to hide the results intially, this.state = {search_term: "-"};
   }
   onChange(event) 
    {
     this.setState({search_term: event.target.value});
   }
-  render() 
+  search(type)
   {
     var javascript_side_json = this.props.data;
     var links = [];
@@ -18,48 +48,80 @@ class Main extends React.Component
     var str = this.state.search_term.toLowerCase();
 
     var list = Object.keys(javascript_side_json).filter(function(key) {
-        var term = javascript_side_json[key]["title"].toLowerCase();
+        var term = javascript_side_json[key][type].toLowerCase();
         if (term.indexOf(str) !== -1)
         {
-          console.log(javascript_side_json[key]["title"]);
+          console.log(javascript_side_json[key][type]);
           links.push(javascript_side_json[key]);
-          return javascript_side_json[key]["title"]
+          return javascript_side_json[key][type]
         }
     }).map(function(key) {
-        return javascript_side_json[key]["title"];
+        return javascript_side_json[key][type];
     });
   
-    
+    return [list,links]; 
+  }
+  render() 
+  {
+
+    list = [this.search("title")[0], this.search("desc")[0]];
+    links = [this.search("title")[1], this.search("desc")[1]];
+    if(this.state.search_term === "")
+    {
+      list[1] = [];
+    }
+    console.log("testing", list[0]);
+    /*
     console.log(list);
     console.log(links);
     
-    console.log(links[0])
+    console.log(links[0])  
+    */
     var input_style = {
     	width:'100%',
     	margin: '0 auto'
     };
+    if(list[0].length > 1 )
+    {
+      var title_h1 = <h1 style={{ textAlign: "left"}}> Title </h1>;
+    }
+    else
+    {
+      var title_h1;
+    }
+    if( list[1].length > 1  )
+    {
+        var desc_h1 = <h1 style={{ textAlign: "left"}}> Description </h1>;
+    }
+    else
+    {
+      var desc_h1;
+    }
     return( 
       <div>
         <div style={input_style}>
               <input onChange={this.onChange.bind(this)} />
               <br/>
         </div>
-        {list.map(function(a, index) {
+        <h1 style={{ textAlign: "left"}}> Title </h1>
+        {list[0].map(function(a, index) {
              return (
-                 <a href={"/products/" + String(links[index]["id"])} key={index}>
-                      <div className="col-sm-6 col-md-4">
-                        <div className="thumbnail">
-                          <img src={links[index]["pic"]}  />
-                          <div className="caption">
-                            <h3>{a}</h3>
-                            <p>{links[index]["desc"]}</p>
-                            <p>Price: ${links[index]["price"]}</p>
-                          </div>
-                        </div>
-                      </div>
-                 </a>
+                 <div>
+                      <Video title={a} links={links[0]} index={index} type={"title"}/>
+                 </div>
              );
          })}
+         
+      <h1 style={{ textAlign: "left"}}> Description </h1>
+        <div>
+        {list[1].map(function(a, index) {
+             return (
+                 <div>
+                      <Video title={ a } links={links[1]} index={index} type={"desc"} />
+                 </div>
+             );
+         })}
+        </div>
       </div>
         );
   }

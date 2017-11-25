@@ -62,5 +62,6 @@ Rails.application.routes.draw do
   get 'all' => 'products#all'
   get 'new' => 'products#new'
   get 'search' => 'products#search'
+  get 'categories' => 'products#categories'
   # get '/search/:query' => 'search#index'
 end
