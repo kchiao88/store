@@ -61,6 +61,10 @@ class Main extends React.Component
   
     return [list,links]; 
   }
+  componentDidMount() {
+    console.log("rendeeerrr");
+    document.getElementById('search-input').disabled = false;
+  }
   render() 
   {
 
@@ -110,10 +114,11 @@ class Main extends React.Component
       var desc_h1;
     }
     */
+
     return( 
       <div>
         <div style={input_style}>
-              <input onChange={this.onChange.bind(this)} />
+              <input id="search-input" onChange={this.onChange.bind(this)} disabled/>
               <br/>
         </div>
         <h1 style={{ textAlign: "left"}}> Title </h1>

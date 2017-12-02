@@ -3,6 +3,6 @@
 </script>
 <div style="width: 100%;">
     <div style="margin: 0 auto;">
-        <%= react_component("Main", {data: @allproducts_json.html_safe}) %>
+        <%= react_component("Main", {data: @allproducts_json.html_safe}, {prerender: true}) %>
     </div>
 </div>
